@@ -1,10 +1,12 @@
 import logo from './logo.svg';
+import firebase from "firebase"
 import './App.css';
 
 function App() {
+  const firebaseApp = firebase.apps[0];
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +19,12 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <h1>React & Firebase </h1> 
+      <h2>Ezekiel With help from @farazamiruddin</h2>
+      <code>
+        <pre>{JSON.stringify(firebaseApp.options, null, 2)}</pre>  
+      </code>
     </div>
   );
 }
