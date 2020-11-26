@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import firebase from "firebase"
+import firebase from 'firebase'
+import firebaseui from 'firebaseui'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -26,6 +27,16 @@ firebase.initializeApp({
   appId: "1:199638026850:web:e95319ee93213434addf3b",
   measurementId: "G-0RQH88HJ0E"
 });
+
+var db = firebase.database();
+var ref = db.ref("user/note");
+ref.child("abcd").set({
+  title: "Hello",
+  user_id: "12345",
+  cotent: "testing!",
+  noteID: "12345"
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
