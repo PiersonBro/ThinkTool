@@ -1,0 +1,9 @@
+node_modules/
+.github/
+dist/
+.eslintignore
+LICENSE
+*.lock
+.travis.yml
+.next
+storybook-static/
