@@ -11,12 +11,12 @@
 		"build": "rm -rf dist && webpack --mode production --config webpack.prod.config.js && webpack --mode production --config webpack.server.config.js",
 		"test": "yarn prettier-check; yarn build",
 		"start": "node ./dist/server.*.wp.js",
-		"prettier": "prettier --config ./.prettierrc --ignore-path  ./.prettierignore --write \"**/*.js*\" \"**/*.scss\" \"*.json\" \"*.md\"",
+		"prettier": "prettier --config ./.prettierrc --ignore-path  ./.prettierignore --write \"**/*.js*\" \"**/*.*css\" \"*.json\" \"*.md\"",
 		"prettier-check": "prettier --list-different \"{*.md,./{src}/**/*.js?(x)}\"",
-		"lint": "yarn prettier; yarn eslint; yarn stylelint",
+		"lint": "yarn prettier && yarn stylelint",
 		"eslint": "eslint '*/**/*.{js,jsx}'",
-		"stylelint": "stylelint --config ./.stylelintrc --fix \"**/*.scss\" --color --cache",
-		"stylelint-check": "stylelint --config ./.stylelintrc \"**/*.scss\" --color --cache"
+		"stylelint": "stylelint --config ./.stylelintrc --fix \"**/*.*css\" --color --cache",
+		"stylelint-check": "stylelint --config ./.stylelintrc \"**/*.*css\" --color --cache"
 	},
 	"browsersList": [
 		"last 2 versions",
@@ -26,12 +26,15 @@
 	"dependencies": {
 		"express": "^4.17.1",
 		"express-validator": "^6.7.0",
+		"firebase": "^8.1.1",
 		"fs": "^0.0.2",
 		"react": "^17.0.1",
-		"react-dom": "^17.0.1"
+		"react-dom": "^17.0.1",
+		"react-router-dom": "^5.2.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.12.8",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
 		"@babel/preset-env": "^7.12.7",
 		"@babel/preset-react": "^7.12.7",
 		"@webpack-cli/serve": "^1.1.0",

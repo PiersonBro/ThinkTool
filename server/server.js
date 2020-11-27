@@ -1,3 +1,5 @@
+/** @format */
+
 import path from "path";
 import express from "express";
 import fs from "fs";
@@ -18,7 +20,7 @@ app.get(/.(jpg|png|js|css)$/, (req, res) => {
 	else res.status(404).end();
 });
 
-app.get("/", (req, res ) => {
+app.get("/", (req, res) => {
 	const INDEX_URL = "/index.html";
 
 	req.url = INDEX_URL;
@@ -30,7 +32,7 @@ app.listen(PORT, () => {
 	console.log(`App listening to ${PORT}....`);
 });
 
-const checkContentEncoding = (req, res ) => {
+const checkContentEncoding = (req, res) => {
 	if (req.acceptsEncodings("br")) {
 		req.url += ".br";
 		res.set("Content-Encoding", "br");
@@ -47,7 +49,7 @@ const checkIfFileAllowed = (fileName) => {
 	return false;
 };
 
-const sendFile = (path, res ) => {
+const sendFile = (path, res) => {
 	res.sendFile(path);
 };
 

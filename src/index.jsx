@@ -1,6 +1,11 @@
+/** @format */
+
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { initializeFirebase } from "./firebase/firebase";
+import App from "./components/app";
 
 if (typeof window !== "undefined") {
-	ReactDOM.render(<div>Hello world</div>, document.getElementById("root"));
+	initializeFirebase();
+	ReactDOM.render(<App />, document.getElementById("root"));
 }

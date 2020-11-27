@@ -1,4 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/**
+ * /* eslint-disable @typescript-eslint/no-var-requires
+ *
+ * @format
+ */
+
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const TerserPlugin = require("terser-webpack-plugin");
