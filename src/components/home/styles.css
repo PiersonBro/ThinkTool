@@ -1,1 +1,17 @@
 /** @format */
+
+.title {
+    padding: 2rem 0 0 3rem;
+    font-size: 4.5rem;
+    font-weight: bolder;
+    color: #04657d00;
+    text-shadow: -5px 3px 1px #ffffff;
+    letter-spacing: 1.5px;
+    -webkit-text-stroke: 2.5px rgb(39, 164, 173);
+}
+
+.main {
+    padding: 2em;
+    display: flex;
+    flex-wrap: wrap;
+}

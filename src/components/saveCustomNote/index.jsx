@@ -1,6 +1,8 @@
 /** @format */
 
 import React from "react";
+import chunk from 'lodash/chunk';
+import styles from "../home/styles.css";
 
 class SaveCustomNote extends React.Component {
 	// props: {
@@ -30,19 +32,23 @@ class SaveCustomNote extends React.Component {
 	};
 
 	render() {
+		// const [id] = useState(_uniqueId('prefix-'));
 		return (
 			<React.Fragment>
-				<label>title</label>
-				<input
-					type='text'
-					onChange={(event) => this.SaveTitle(event.target.value)}
-				/>
-				<label>text</label>
-				<input
-					type='text'
-					onChange={(event) => this.SaveText(event.target.value)}
-				/>
-				<button onClick={this.SaveNote}>Save Custom Note</button>
+				<div className="noteblock">
+					<label>title</label>
+					<input
+						type='text'
+						onChange={(event) => this.SaveTitle(event.target.value)}
+					/>
+					<label>text</label>
+					{/* <input
+						type='text'
+						onChange={(event) => this.SaveText(event.target.value)}
+					/> */}
+					<textarea id={this.props.noteID} onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10"> </textarea>
+					<button onClick={this.SaveNote}>Save Custom Note</button>
+				</div>
 			</React.Fragment>
 		);
 	}
