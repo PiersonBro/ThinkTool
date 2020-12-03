@@ -3,6 +3,7 @@
 import React from "react";
 import SaveCustomNote from "../saveCustomNote";
 import DisplayNote from "../displayNote";
+import styles from "./styles.css";
 
 const AddNote = (databaseref) => {
 	databaseref.child("abc").set({
@@ -15,9 +16,9 @@ const AddNote = (databaseref) => {
 
 const Home = ({ databaseref }) => {
 	return (
-		<div>
-			<div>hello</div>
-			<button onClick={() => AddNote(databaseref)}>Save Note</button>
+		<div className={styles.main}>
+			<div className={styles.title}>ThinkTool</div>
+			{/* <button onClick={() => AddNote(databaseref)}>Save Note</button> */}
 			<SaveCustomNote databaseref={databaseref} />
 			<DisplayNote databaseref={databaseref} />
 		</div>
