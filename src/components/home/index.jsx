@@ -18,7 +18,6 @@ const Home = ({ databaseref }) => {
 	return (
 		<div className={styles.main}>
 			<div className={styles.title}>ThinkTool</div>
-			{/* <div>hello</div> */}
 			{/* <button onClick={() => AddNote(databaseref)}>Save Note</button> */}
 			<SaveCustomNote databaseref={databaseref} />
 			<DisplayNote databaseref={databaseref} />

@@ -1,7 +1,9 @@
 /** @format */
 
 .title {
-    padding: 2rem 0 0 3rem;
+    width: 100%;
+    margin: auto;
+    padding: 1rem 0 0 1rem;
     font-size: 4.5rem;
     font-weight: bolder;
     color: #04657d00;
@@ -14,4 +16,6 @@
     padding: 2em;
     display: flex;
     flex-wrap: wrap;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+

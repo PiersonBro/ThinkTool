@@ -1,0 +1,70 @@
+/* Custom Note Styling */
+.noteblock {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 10px;
+    width: min-content;
+}
+
+.noteblock:focus-within {
+    /* border:1px solid rgb(39, 164, 173); */
+    box-shadow: -4px 4px rgba(119, 136, 153);
+}
+
+.noteblock > * {
+    background-color: whitesmoke;
+    color: rgb(44, 53, 56);
+}
+
+.noteblock > input {
+    padding: 0.5em;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+}
+
+.noteblock > input:focus {
+    outline: 1px solid rgb(46, 178, 211);
+}
+
+.noteblock > hr {
+    width: 98%;
+    margin: 0.25em 0;
+    opacity: 0.5;
+    align-self: center;
+}
+
+.noteblock > textarea {
+    padding: 1em;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+    border: none;
+}
+
+.noteblock > textarea:focus {
+    outline: 1px solid rgb(46, 178, 211);
+}
+
+.noteblock > button, .noteblock > button:focus {
+    box-shadow: 2px 4px 6px #00000024;
+    background-color: rgb(39, 164, 173);
+    padding: 0.5rem;
+    color: aliceblue;
+    border: none;
+    outline: none;
+    margin-top: 1rem;
+}
+
+.noteblock > button:hover {
+    background-color: rgb(24, 194, 206);
+    cursor: pointer;
+}
+
+.noteblock > button:active {
+    background-color: rgb(24, 194, 206);
+    outline: 2px solid rgb(17, 228, 203);
+    cursor: pointer;
+}
