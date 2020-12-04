@@ -20,24 +20,13 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.(s*)css$/,
-				use: [
-					"style-loader",
-					{
-						loader: "css-loader",
-						options: {
-							modules: {
-								localIdentName: "[path][name]__[local]",
-							},
-						},
-					},
-					"sass-loader",
-				],
-			},
-			{
 				test: /\.(jpg|png)$/,
 				loader: "file-loader",
 			},
+			{
+				  test: /\.css/,
+				  use: [ 'style-loader', 'css-loader' ]
+			}
 		],
 	},
 	resolve: {
