@@ -24,8 +24,26 @@ module.exports = {
 				loader: "file-loader",
 			},
 			{
-				  test: /\.css/,
-				  use: [ 'style-loader', 'css-loader' ]
+				  test: /\.(s*)css$/,
+				use: [
+					"style-loader",
+					{
+						loader: "css-loader",
+						options: {
+							modules: {
+								localIdentName: "[path][name]__[local]",
+							},
+						},
+					},
+					"sass-loader",
+					
+				],
+				exclude:  [path.resolve(__dirname, "node_modules/firebaseui/dist/")],
+			},
+			{
+				test: /\.css/,
+                use: [ 'style-loader', 'css-loader' ],
+                include: [path.resolve(__dirname, "node_modules/firebaseui/dist/")]
 			}
 		],
 	},
