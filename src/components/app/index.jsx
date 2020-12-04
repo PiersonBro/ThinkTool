@@ -5,6 +5,7 @@ import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Home from "../home/index";
 import firebase from "firebase";
+import styles from "./styles.css";
 
 const customHistory = createBrowserHistory();
 

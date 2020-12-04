@@ -2,6 +2,7 @@
 
 import React from "react";
 import firebase from "firebase";
+import styles from "../saveCustomNote/styles.css"
 
 class DisplayNote extends React.Component {
 	state = {
@@ -20,9 +21,11 @@ class DisplayNote extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<button onClick={this.GetNote}>Get Note</button>
-				<div>title: {this.state.title}</div>
-				<div>text: {this.state.text}</div>
+				<div className={styles.noteblock}>
+					<button onClick={this.GetNote}>Get Note</button>
+					<div>title: {this.state.title}</div>
+					<div>text: {this.state.text}</div>
+				</div>
 			</React.Fragment>
 		);
 	}
