@@ -21,10 +21,14 @@
 }
 
 .noteblock > input {
-    padding: 0.5em;
+    padding: .5rem 1rem;
     font-size: 20px;
     font-weight: 700;
     border: none;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .noteblock > input:focus {
@@ -32,14 +36,17 @@
 }
 
 .noteblock > hr {
-    width: 98%;
+    width: 100%;
     margin: 0.25em 0;
     opacity: 0.5;
     align-self: center;
 }
 
 .noteblock > textarea {
-    padding: 1em;
+    padding: .5rem 1rem;
+    min-width: 8rem;
+    min-height: 2rem;
+    font-size: 16px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
     border: none;
 }
@@ -48,14 +55,22 @@
     outline: 1px solid rgb(46, 178, 211);
 }
 
-.noteblock > button, .noteblock > button:focus {
-    box-shadow: 2px 4px 6px #00000024;
-    background-color: rgb(39, 164, 173);
+.noteblock > button {
+    min-width: 8rem;
+    width: fit-content;
     padding: 0.5rem;
+    margin: 1rem 0 0.5rem;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+    background-color: rgb(39, 164, 173);
     color: aliceblue;
     border: none;
-    outline: none;
-    margin-top: 1rem;
+    /* outline: none; */
+}
+
+.noteblock > button:focus {
+    box-shadow: 2px 4px 6px #00000024;
+    outline: 2px solid rgb(102, 238, 215);
 }
 
 .noteblock > button:hover {
@@ -67,4 +82,8 @@
     background-color: rgb(24, 194, 206);
     outline: 2px solid rgb(17, 228, 203);
     cursor: pointer;
+}
+
+.savebutton {
+    align-self: flex-end;
 }
