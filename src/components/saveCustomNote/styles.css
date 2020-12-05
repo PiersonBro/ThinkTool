@@ -65,7 +65,6 @@
     background-color: rgb(39, 164, 173);
     color: aliceblue;
     border: none;
-    /* outline: none; */
 }
 
 .noteblock > button:focus {
