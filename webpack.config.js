@@ -20,7 +20,11 @@ module.exports = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.(s*)css$/,
+				test: /\.(jpg|png)$/,
+				loader: "file-loader",
+			},
+			{
+				  test: /\.(s*)css$/,
 				use: [
 					"style-loader",
 					{
@@ -32,12 +36,15 @@ module.exports = {
 						},
 					},
 					"sass-loader",
+					
 				],
+				exclude:  [path.resolve(__dirname, "node_modules/firebaseui/dist/")],
 			},
 			{
-				test: /\.(jpg|png)$/,
-				loader: "file-loader",
-			},
+				test: /\.css/,
+                use: [ 'style-loader', 'css-loader' ],
+                include: [path.resolve(__dirname, "node_modules/firebaseui/dist/")]
+			}
 		],
 	},
 	resolve: {
