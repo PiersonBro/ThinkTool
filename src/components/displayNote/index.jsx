@@ -23,8 +23,17 @@ class DisplayNote extends React.Component {
 			<React.Fragment>
 				<div className={styles.noteblock}>
 					<button onClick={this.GetNote}>Get Note</button>
-					<div>title: {this.state.title}</div>
-					<div>text: {this.state.text}</div>
+					<input
+						type='text'
+						value={this.state.title}
+						readOnly
+					/>
+					<hr />
+					<textarea
+						cols="40" rows="10"
+						value={this.state.text}
+						readOnly>
+					</textarea>
 				</div>
 			</React.Fragment>
 		);

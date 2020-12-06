@@ -43,7 +43,7 @@ class SaveCustomNote extends React.Component {
 					/>
 					<hr />
 					<textarea onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10" placeholder='Text'></textarea>
-					<button onClick={this.SaveNote}>Save Custom Note</button>
+					<button onClick={this.SaveNote} className={styles.savebutton}>Save Note</button>
 				</div>
 			</React.Fragment>
 		);
