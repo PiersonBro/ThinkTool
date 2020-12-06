@@ -2,6 +2,7 @@
 
 import React from "react";
 import styles from "./styles.css";
+import firebase from "firebase";
 
 class SaveCustomNote extends React.Component {
 	// props: {
@@ -22,11 +23,12 @@ class SaveCustomNote extends React.Component {
 	};
 
 	SaveNote = () => {
-		this.props.databaseref.child("abc").set({
+		var noteID = Math.floor(Math.random() * Math.floor(1000)) + firebase.auth().currentUser.uid;
+		return this.props.databaseref.child(noteID).set({
 			title: this.state.title,
-			user_id: "12345",
+			user_id: firebase.auth().currentUser.uid,
 			content: this.state.text,
-			noteID: "12345",
+			noteID:  noteID,
 		});
 	};
 
