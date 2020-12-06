@@ -27,8 +27,6 @@ class DisplayNote extends React.Component {
 						type='text'
 						value={this.state.title}
 						readOnly
-						// placeholder='Title'
-						// onChange={(event) => this.SaveTitle(event.target.value)}
 					/>
 					<hr />
 					<textarea
@@ -36,9 +34,6 @@ class DisplayNote extends React.Component {
 						value={this.state.text}
 						readOnly>
 					</textarea>
-					{/* <button onClick={this.SaveNote} className={styles.savebutton}> Save Note</button> */}
-					{/* <div>title: {this.state.title}</div> */}
-					{/* <div>text: {this.state.text}</div> */}
 				</div>
 			</React.Fragment>
 		);

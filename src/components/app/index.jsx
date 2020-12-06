@@ -4,6 +4,7 @@ import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Home from "../home/index";
+import Home1 from "../home/index"
 import firebase from "firebase";
 import styles from "./styles.css";
 
@@ -20,7 +21,8 @@ const App = () => {
 				<Switch>
 					{/* <Route path="/about" component={About} /> */}
 					<Route path='/'>
-						<Home databaseref={ref} />
+						<Home1 databaseref={ref} /> 
+						{/* <Home databaseref={ref} />  */}
 					</Route>
 				</Switch>
 			</Router>
