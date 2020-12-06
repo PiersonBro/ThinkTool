@@ -9,7 +9,7 @@ import firebaseui from "firebaseui"
 const ELEMENT_ID = 'firebaseui-auth-container';
 let firebaseUIDeletion = Promise.resolve();
 
-export default class SignIn extends React.Component {
+class SignIn extends React.Component {
 
     constructor(props) {
         super(props);
@@ -72,3 +72,5 @@ export default class SignIn extends React.Component {
             );
     }
 }
+
+export default SignIn;
