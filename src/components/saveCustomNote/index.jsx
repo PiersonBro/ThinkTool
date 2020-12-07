@@ -4,14 +4,17 @@ import React from "react";
 import styles from "./styles.css";
 import firebase from "firebase";
 
-class SaveCustomNote extends React.Component {
+class Note extends React.Component {
 	// props: {
 	// 	databaseref;
+	//  title;
+	//  text;
+	//  noteID;
 	// }
 
 	state = {
-		title: "",
-		text: "",
+		title: this.props.title,
+		text: this.props.text,
 	};
 
 	SaveTitle = (title) => {
@@ -21,14 +24,14 @@ class SaveCustomNote extends React.Component {
 	SaveText = (text) => {
 		this.setState({ text });
 	};
-
+	// I don't think we should be saving here!
+	// But.... I don't understand react well enough to have anything more than an intuition. 
 	SaveNote = () => {
-		var noteID = Math.floor(Math.random() * Math.floor(1000)) + firebase.auth().currentUser.uid;
 		return this.props.databaseref.child(noteID).set({
 			title: this.state.title,
 			user_id: firebase.auth().currentUser.uid,
 			content: this.state.text,
-			noteID:  noteID,
+			noteID:  this.props.noteID,
 		});
 	};
 
@@ -38,11 +41,12 @@ class SaveCustomNote extends React.Component {
 				<div className={styles.noteblock}>
 					<input
 						type='text'
-						placeholder='Title'
+						value={this.props.title}
+						placeholder="Title"
 						onChange={(event) => this.SaveTitle(event.target.value)}
 					/>
 					<hr />
-					<textarea onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10" placeholder='Text'></textarea>
+					<textarea onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10" value={this.props.text} placeholder="Text"></textarea>
 					<button onClick={this.SaveNote} className={styles.savebutton}>Save Note</button>
 				</div>
 			</React.Fragment>
@@ -50,4 +54,4 @@ class SaveCustomNote extends React.Component {
 	}
 }
 
-export default SaveCustomNote;
+export default Note;

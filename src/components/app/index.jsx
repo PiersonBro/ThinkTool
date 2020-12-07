@@ -10,17 +10,13 @@ import styles from "./styles.css";
 const customHistory = createBrowserHistory();
 
 const App = () => {
-	const database = firebase.database();
-	// Use this to skip over users until we have them
-	const ref = database.ref("user/note");
-
 	return (
 		<React.Fragment>
 			<Router history={customHistory}>
 				<Switch>
 					{/* <Route path="/about" component={About} /> */}
 					<Route path='/'>
-						<Home databaseref={ref} />
+						<Home/>
 					</Route>
 				</Switch>
 			</Router>

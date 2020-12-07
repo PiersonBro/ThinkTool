@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import SaveCustomNote from "../saveCustomNote";
+import Note from "../saveCustomNote";
 import DisplayNote from "../displayNote";
 import SignInFlow from "../signIn/SignInFlow";
 import firebase from "firebase"
@@ -15,21 +15,37 @@ class Home extends React.Component {
 		notes: [],
 	}
 
-	addNotes = () => {
+	addNotes = (note) => {
+		var noteID; 
+		if (note.noteID !== undefined) {
+			noteID = note.noteID;
+		} else {
+			noteID = Math.floor(Math.random() * Math.floor(1000)) + firebase.auth().currentUser.uid;
+		}
 		this.setState({
-			notes: [...this.state.notes, <SaveCustomNote databaseref={this.props.databaseref} />]
+			notes: [...this.state.notes, <Note title={note.title === undefined ? "" : note.title} databaseref={this.databaseref} text={note.content === undefined ? "" : note.content} key ={noteID}/>]
 		})
 	}
 
-	// Testing out fetching data from database
 	loadNotes = () => {
-		this.props.databaseref.once("value").then(function (snapshot) {
-			console.log(typeof (snapshot.val()));
-			Object.entries(snapshot.val()).forEach(([key, value]) => {
-				// console.log(`${key} ${value}`);
-				console.log('Note ID: ' + value.noteID + ' Note Title: ' + value.title + ' Content: ' + value.content + ' User ID: ' + value.user_id);
+		//Do we need to update state here?
+		// ref.on("child_added", function(snap) {
+		// 	  count++;
+		// 	  console.log("added:", snap.key);
+		// 	});	
+		var home = this;		
+		this.databaseref.once("value").then(function (snapshot) {
+			Object.values(snapshot.val()).forEach((value) => {
+				 home.addNotes(value);
 			})
 		});
+	}
+
+	signInCallback = () => {
+		if (this.databaseref === undefined) {
+			var database = firebase.database();
+			this.databaseref = database.ref(firebase.auth().currentUser.uid.toString()+"/note");
+		}
 	}
 
 	render() {
@@ -37,9 +53,6 @@ class Home extends React.Component {
 			<React.Fragment>
 				<div className={styles.main}>
 					<div className={styles.title}>ThinkTool</div>
-					{/* <button onClick={() => AddNote(databaseref)}>Save Note</button> */}
-					{/* <SaveCustomNote databaseref={this.props.databaseref} /> */}
-					<DisplayNote databaseref={this.props.databaseref} />
 					{this.state.notes}
 					<button
 						className={styles.addButton}
@@ -49,7 +62,7 @@ class Home extends React.Component {
 						className={styles.addButton}
 						onClick={this.addNotes}
 					>+</button>
-					<SignInFlow/>
+					<SignInFlow callback={this.signInCallback.bind(this)}/>
 				</div>
 			</React.Fragment>
 		);
