@@ -7,10 +7,8 @@ import SignInFlow from "../signIn/SignInFlow";
 import firebase from "firebase"
 import styles from "./styles.css";
 
-// Same as Home(const), but a stateful class so that we can add stuff to it?
 class Home extends React.Component {
 
-	// Need new notes and displayed notes to be the same class so that we can have an array that contains both saved notes and new notes, and also have the ability to edit saved notes
 	state = {
 		notes: [],
 	}
@@ -45,6 +43,7 @@ class Home extends React.Component {
 		if (this.databaseref === undefined) {
 			var database = firebase.database();
 			this.databaseref = database.ref(firebase.auth().currentUser.uid.toString()+"/note");
+			this.loadNotes();
 		}
 	}
 
@@ -53,11 +52,7 @@ class Home extends React.Component {
 			<React.Fragment>
 				<div className={styles.main}>
 					<div className={styles.title}>ThinkTool</div>
-					{this.state.notes}
-					<button
-						className={styles.addButton}
-						onClick={this.loadNotes}
-					>Load Notes <br/> in Console</button>
+					{this.databaseref === undefined ? <h3>loading...</h3> : this.state.notes}
 					<button
 						className={styles.addButton}
 						onClick={this.addNotes}
@@ -69,5 +64,4 @@ class Home extends React.Component {
 	}
 }
 
-// export default Home;
 export default Home;
