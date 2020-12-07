@@ -10,9 +10,6 @@ import debounce from "lodash.debounce";
 const DEBOUNCE_SAVE_DELAY_MS = 1000;
 
 function Autosave ({databaseref, noteID, data}) {
-	console.log("what")
-	// console.log(databaseref);
-	// console.log(noteID);
 	const debouncedSave = useCallback(
 		debounce(async (newData, noteID, ref) => {
 			await databaseref.child(noteID).set({
@@ -27,8 +24,7 @@ function Autosave ({databaseref, noteID, data}) {
 	
 	useEffect(() => {
 		if (data) {
-			console.log("debouncing!!!");
-			// debouncedSave(data, noteID, databaseref);
+			debouncedSave(data, noteID, databaseref);
 		}
 	}, [data, debouncedSave])
 
@@ -45,10 +41,10 @@ class Note extends React.Component {
 	// }
 
 	constructor(props) {
-		console.log("hello!!!!!");
 		super(props);
-		this.saveText = this.saveText.bind(this);
-		this.handleSubmit = this.saveText.bind(this);
+		//FIXME: Do we really need this? Seems like it's the best practice but who knows.
+		this.SaveText = this.SaveText.bind(this);
+		this.SaveTitle = this.SaveTitle.bind(this);
 	}
 
 	state = {
@@ -56,30 +52,27 @@ class Note extends React.Component {
 		text: this.props.text,
 	};
 
-	saveTitle = (title) => {
-		console.log(title);
-		console.log("triggered!!");
-		this.setState({ title });
+	SaveTitle = (event) => {
+		this.setState({ title: event.target.value });
 	};
 
-	saveText = (text) => {
+	SaveText = (text) => {
 		this.setState({ text });
 	};
 	
 	render() {
-		// console.log(this.props.noteID);
 		return (
 			<React.Fragment>
 				<div className={styles.noteblock}>
 					<input
 						type='text'
-						value={this.props.title}
+						value={this.state.title}
 						placeholder="Title"
-						onChange={(event) => this.saveTitle(event.target.value)}
+						onChange={(event) => this.SaveTitle(event)}
 					/>
 					<hr />
-					<textarea onChange={(event) => this.saveText(event.target.value)} cols="40" rows="10" value={this.props.text} placeholder="Text"></textarea>
-					{/* <Autosave databaseref={this.props.databaseref} noteID={this.props.noteID} data={this.state}/> */}
+					<textarea onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10" value={this.state.text} placeholder="Text"></textarea>
+					<Autosave databaseref={this.props.databaseref} noteID={this.props.noteID} data={this.state}/>
 				</div>
 			</React.Fragment>
 		);

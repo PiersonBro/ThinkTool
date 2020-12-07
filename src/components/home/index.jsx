@@ -1,8 +1,7 @@
 /** @format */
 
 import React from "react";
-import Note from "../saveCustomNote";
-import DisplayNote from "../displayNote";
+import Note from "../Note";
 import SignInFlow from "../signIn/SignInFlow";
 import firebase from "firebase"
 import styles from "./styles.css";
@@ -21,7 +20,7 @@ class Home extends React.Component {
 			noteID = Math.floor(Math.random() * Math.floor(1000)) + firebase.auth().currentUser.uid;
 		}
 		this.setState({
-			notes: [...this.state.notes, <Note title={note.title === undefined ? "" : note.title} databaseref={this.databaseref} text={note.content === undefined ? "" : note.content} key ={noteID}/>]
+			notes: [...this.state.notes, <Note title={note.title === undefined ? "" : note.title} databaseref={this.databaseref} text={note.content === undefined ? "" : note.content} key ={noteID} noteID = {noteID}/>]
 		})
 	}
 

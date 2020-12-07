@@ -4,7 +4,7 @@ import firebase from "firebase"
 import Modal from "./Modal";
 import useModal from "./useModal";
 //FIXME: Use proper buttoning styling CSS.
-import buttonStyles from "../saveCustomNote/styles.css";
+import buttonStyles from "../Note/styles.css";
 
 function SignInScreen({callback}) {
     const [isSignedIn, setIsSignedIn] = useState(false);
