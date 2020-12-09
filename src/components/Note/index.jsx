@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect } from "react";
 import styles from "./styles.css";
 import firebase from "firebase";
+import propTypes from "prop-types";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import debounce from "lodash.debounce";
@@ -17,6 +18,7 @@ function Autosave ({databaseref, noteID, data}) {
 				user_id: firebase.auth().currentUser.uid,
 				content: newData.text,
 				noteID:  noteID,
+				relatedNotes: newData.relatedNotes,
 			});
 		}, DEBOUNCE_SAVE_DELAY_MS), 
 		[],
@@ -31,14 +33,14 @@ function Autosave ({databaseref, noteID, data}) {
 	return null;
 }
 
-
 class Note extends React.Component {
-	// props: {
-	// 	databaseref;
-	//  title;
-	//  text;
-	//  noteID;
-	// }
+	propTypes = {
+		databaseref: propTypes.object.isRequired,
+		title: propTypes.string,
+		text: propTypes.string,
+		noteID: propTypes.string.isRequired,
+		relatedNotes: propTypes.arrayOf(propTypes.string),
+	};	
 
 	constructor(props) {
 		super(props);
@@ -50,6 +52,8 @@ class Note extends React.Component {
 	state = {
 		title: this.props.title,
 		text: this.props.text,
+		newRelatedNote: "",
+		relatedNotes: this.props.relatedNotes || [],
 	};
 
 	SaveTitle = (event) => {
@@ -59,6 +63,18 @@ class Note extends React.Component {
 	SaveText = (text) => {
 		this.setState({ text });
 	};
+
+	updateNewRelatedNoteState = (text) => {
+		this.setState({newRelatedNote: text});
+	}
+
+	addRelationship = () => {
+		const { newRelatedNote, relatedNotes } = this.state;
+
+		relatedNotes.push(newRelatedNote)
+
+		this.setState({relatedNotes});
+	}
 	
 	render() {
 		return (
@@ -73,6 +89,15 @@ class Note extends React.Component {
 					<hr />
 					<textarea onChange={(event) => this.SaveText(event.target.value)} cols="40" rows="10" value={this.state.text} placeholder="Text"></textarea>
 					<Autosave databaseref={this.props.databaseref} noteID={this.props.noteID} data={this.state}/>
+					{/* This is quick UI input to test that relationships can be added to the database */}
+					<input
+						type="text"
+						value={this.state.newRelatedNote}
+						placeholder="relationship"
+						onChange={(event) => this.updateNewRelatedNoteState(event.target.value)}
+					/>
+					<button onClick={this.addRelationship}>Add Relationship</button>
+					<div>Related Notes: {this.state.relatedNotes}</div>
 				</div>
 			</React.Fragment>
 		);
