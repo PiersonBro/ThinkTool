@@ -20,7 +20,7 @@ class Home extends React.Component {
 			noteID = Math.floor(Math.random() * Math.floor(1000)) + firebase.auth().currentUser.uid;
 		}
 		this.setState({
-			notes: [...this.state.notes, <Note title={note.title === undefined ? "" : note.title} databaseref={this.databaseref} text={note.content === undefined ? "" : note.content} key ={noteID} noteID = {noteID} relatedNotes={note.relatedNotes} />]
+			notes: [...this.state.notes, <Note title={note.title === undefined ? "" : note.title} databaseref={this.databaseref} text={note.content === undefined ? "" : note.content} key ={noteID} noteID = {noteID} relatedNotes={note.relatedNotes} width = {note.width} height = {note.height} posX = {note.posX} posY = {note.posY} />]
 		})
 	}
 
