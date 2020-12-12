@@ -15,6 +15,10 @@
     box-shadow: -4px 4px rgba(119, 136, 153);
 }
 
+.noteblock:active {
+    outline: none;
+}
+
 .noteblock > * {
     background-color: whitesmoke;
     color: rgb(44, 53, 56);

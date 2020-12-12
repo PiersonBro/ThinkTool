@@ -60,6 +60,7 @@ class Note extends React.Component {
 	state = {
 		title: this.props.title,
 		text: this.props.text,
+		id: this.props.noteID,
 		newRelatedNote: "",
 		relatedNotes: this.props.relatedNotes || [],
 		height: this.props.height || 100,
@@ -119,7 +120,7 @@ class Note extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className={styles.noteblock}>
+				<div id={this.state.id} className={styles.noteblock}>
 					<input
 						type='text'
 						value={this.state.title}
@@ -129,8 +130,8 @@ class Note extends React.Component {
 					<hr />
 					<textarea
 						style={{
-							height: this.state.height,
-							width: this.state.width,
+							// height: this.state.height,
+							// width: this.state.width,
 						}}
 						onChange={(event) => this.SaveText(event.target.value)}
 						cols='40'
@@ -157,9 +158,9 @@ class Note extends React.Component {
 						Add Relationship
 					</button>
 					<div>Related Notes: {this.state.relatedNotes}</div>
-					<div>
+					{/* <div>
 						width: {this.state.width} height: {this.state.height}
-					</div>
+					</div> */}
 				</div>
 			</React.Fragment>
 		);
