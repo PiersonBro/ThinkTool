@@ -19,6 +19,14 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.loading {
+    color: white;
+    text-shadow: -2px 3px 1px rgb(39, 164, 173);
+    letter-spacing: 1.5px;
+    margin: 0 8rem;
+    align-self: center;
+}
+
 .addButton {
     margin: 1em 0 1em 1em;
     min-height: 14.5em;

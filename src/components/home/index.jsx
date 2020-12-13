@@ -51,7 +51,7 @@ class Home extends React.Component {
 			<React.Fragment>
 				<div className={styles.main}>
 					<div className={styles.title}>ThinkTool</div>
-					{this.databaseref === undefined ? <h3>loading...</h3> : this.state.notes}
+					{this.databaseref === undefined ? <h3 className={styles.loading}>loading...</h3> : this.state.notes}
 					<button
 						className={styles.addButton}
 						onClick={this.addNotes}
