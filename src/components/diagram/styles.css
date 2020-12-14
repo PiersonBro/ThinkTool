@@ -1,3 +1,25 @@
 .diagramPoint {
-    background-color: lightblue;
+    background-color: #52AFCC;
+    /* color: green; */
+    /* display: none; */
+    border-radius: 10px;
+    z-index: 3;
+}
+
+.diagramHover {
+    background-color: #18c2ce;
+    /* display: block; */
+}
+
+.diagramConnect {
+    z-index: 2;
+    /* color: #52AFCC; */
+    /* outline: 2px solid #52AFCC; */
+}
+
+.diagramConnectHover {
+    z-index: 2;
+    background-color: #18c2ce;
+    /* color: #52AFCC; */
+    /* outline: 2px solid #52AFCC; */
 }

@@ -13,8 +13,7 @@ module.exports = {
 	mode: "development",
 	entry: path.join(__dirname, "/src/index.jsx"),
 	module: {
-		rules: [
-			{
+		rules: [{
 				test: /\.jsx?$/,
 				loader: "babel-loader",
 				exclude: /node_modules/,
@@ -24,7 +23,7 @@ module.exports = {
 				loader: "file-loader",
 			},
 			{
-				  test: /\.(s*)css$/,
+				test: /\.(s*)css$/,
 				use: [
 					"style-loader",
 					{
@@ -36,15 +35,19 @@ module.exports = {
 						},
 					},
 					"sass-loader",
-					
+
 				],
-				exclude:  [path.resolve(__dirname, "node_modules/firebaseui/dist/")],
+				exclude: [path.resolve(__dirname, "node_modules/firebaseui/dist/")],
 			},
 			{
 				test: /\.css/,
-                use: [ 'style-loader', 'css-loader' ],
-                include: [path.resolve(__dirname, "node_modules/firebaseui/dist/")]
-			}
+				use: ['style-loader', 'css-loader'],
+				include: [path.resolve(__dirname, "node_modules/firebaseui/dist/")]
+			},
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader'],
+			},
 		],
 	},
 	resolve: {

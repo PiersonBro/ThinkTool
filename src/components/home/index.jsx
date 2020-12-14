@@ -69,7 +69,7 @@ class Home extends React.Component {
 				<div className={styles.main}>
 					<div className={styles.title}>ThinkTool</div>
 					{this.databaseref === undefined ? <h3>loading...</h3> : this.state.notes}
-					{this.databaseref === undefined ? "" : <Diagram notes={this.state.diagrams} connections={ this.state.connections }/>}
+					{this.databaseref === undefined ? "" : <Diagram notes={this.state.diagrams} connections={this.state.connections} databaseref={this.databaseref}/>}
 					<button
 						className={styles.addButton}
 						onClick={this.addNotes}

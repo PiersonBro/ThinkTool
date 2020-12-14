@@ -76,7 +76,6 @@ class Note extends React.Component {
 				observer = new ResizeObserver(() => {
 					this.resize();
 				});
-
 			observer.observe(input);
 		}
 	}
@@ -130,8 +129,8 @@ class Note extends React.Component {
 					<hr />
 					<textarea
 						style={{
-							// height: this.state.height,
-							// width: this.state.width,
+							height: this.state.height,
+							width: this.state.width,
 						}}
 						onChange={(event) => this.SaveText(event.target.value)}
 						cols='40'

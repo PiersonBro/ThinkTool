@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import './styles.css';
+import styles from './styles.css';
+import firebase from "firebase";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import debounce from "lodash.debounce";
 import 'jsplumb';
 
-// Add connection nodes to noteblocks
-// Load connections from note relationships
+// TODO:
+// 1: Obtain the IDs of the notes connected through the UI
+// 2: Check if connection is new. If it is not, detach
+// 3: Access the DB for the "source" note
+// 4: Add new connection to "relatedNotes" attribute
+// 5: Save changes
 
 class Diagram extends React.Component {
 
@@ -21,68 +30,105 @@ class Diagram extends React.Component {
         setTimeout(function () { //Start the timer
             this.setState({ render: true }) //After 1.5 seconds, set render to true
 
-            this.setState({ render: true }) //After 1.5 seconds, set render to true
-            var els = document.querySelectorAll(".wrapper");
+            var j = (window.j = jsPlumb.getInstance({
+                Container: ".src-components-home-styles__main",
+            }));
 
+            const connectionColor = "#52AFCC";
+
+            // Styling for new connections
             var common = {
                 isSource: true,
                 isTarget: true,
-                connector: "Bezier",
-                connectorStyle: { outlineStroke: "#18c2ce", strokeWidth: 1 },
-                connectorHoverStyle: { strokeWidth: 2 },
                 endpoint: ["Rectangle", {
-                    cssClass: "diagramPoint",
-                    width: 20,
-                    height: 20,
-                    paintStyle: { outlineStroke: "#18c2ce", strokeWidth: 3 },
-                    hoverPaintStyle: { outlineStroke: "lightblue" },
-                    anchors: ["Right", "Left", "Bottom", "Top"],
-                    maxConnections: 3
+                    cssClass: styles.diagramPoint,
+                    hoverClass: styles.diagramHover,
+                    maxConnections: 3,
                 }],
+                paintStyle: { fill: "#ffffff00" },
+                connectorStyle: { outlineStroke: connectionColor, strokeWidth: 2 },
+                connectorHoverStyle: { strokeWidth: 3 },
                 // overlays: [
-                //             ["Arrow", { foldback: 0.2 }],
-                //             ["Label", { cssClass: "labelClass" }],]
+                //     ["Arrow", {
+                //         foldback: 1,
+                //         location: .96,
+                //         width: 30,
+                //         paintStyle: { fill: connectionColor },
+                //     }],
+                // ],
             };
 
-            // var commonEndpoint =
-            //     ["Rectangle", {
-            //         cssClass: "diagramPoint",
-            //         width: 20,
-            //         height: 20,
-            //         paintStyle: { fill: "#f0eaea", strokeWidth: 3 },
-            //         hoverPaintStyle: { outlineStroke: "lightblue" },
-            //         anchors: ["Right", "Left", "Bottom", "Top"],
-            //         maxConnections: 3
-            //     }]
-            
+            // Styling for connections
+            var connectionCommon = {
+                cssClass: styles.diagramConnect,
+                hoverClass: styles.diagramConnectHover,
+            }
+
+            const endpointX = 130;
+            const endpointY = 30;
 
             if (this.props.notes != undefined) {
                 this.props.notes.forEach(note => {
-                    jsPlumb.addEndpoint(note, common);
+
+                    jsPlumb.addEndpoint(note, {
+                        anchor: "Bottom",
+                        endpoint: ["Rectangle", {
+                            cssClass: styles.diagramPoint,
+                            hoverClass: styles.diagramHover,
+                            maxConnections: 3,
+                            width: endpointX,
+                            height: endpointY,
+                        }]
+                    }, common);
+                    jsPlumb.addEndpoint(note, {
+                        anchor: "Right",
+                        endpoint: ["Rectangle", {
+                            cssClass: styles.diagramPoint,
+                            hoverClass: styles.diagramHover,
+                            maxConnections: 3,
+                            width: endpointY,
+                            height: endpointX,
+                        }]
+                    }, common);
+                    jsPlumb.addEndpoint(note, {
+                        anchor: "Left",
+                        endpoint: ["Rectangle", {
+                            cssClass: styles.diagramPoint,
+                            hoverClass: styles.diagramHover,
+                            maxConnections: 3,
+                            width: endpointY,
+                            height: endpointX,
+                        }]
+                    }, common);
                 });
             }
 
             if (this.props.connections != undefined) {
                 this.props.connections.forEach(connection => {
-                    console.log(connection);
-                    console.log(connection[0]);
-                    console.log(connection[1]);
                     jsPlumb.connect({
                         source: connection[0],
                         target: connection[1],
-                        common
-                    });
-                })
+                        paintStyle: { outlineStroke: connectionColor, strokeWidth: 2 },
+                        connectorHoverStyle: { strokeWidth: 3 },
+                    }, connectionCommon);
+                });
             }
 
+            var connectionList = jsPlumb.getConnections({
+                scope: this,
+            });
+            console.log(connectionList);
+
+            connectionList.forEach((connection => {
+                console.log(connection.sourceId);
+                console.log(connection.targetId);
+            }));
         }.bind(this), 1500);
     }
 
     render() {
         return (
             <div id="diagramContainer">
-                <div id="item_left" className="item"></div>
-                <div id="item_right" className="item"></div>
             </div>
         );
     }
