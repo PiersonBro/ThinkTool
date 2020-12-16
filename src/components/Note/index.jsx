@@ -129,8 +129,8 @@ class Note extends React.Component {
 					<hr />
 					<textarea
 						style={{
-							height: this.state.height,
-							width: this.state.width,
+							height: this.props.height,
+							width: this.props.width,
 						}}
 						onChange={(event) => this.SaveText(event.target.value)}
 						cols='40'
