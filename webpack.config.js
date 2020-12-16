@@ -37,16 +37,6 @@ module.exports = {
 					"sass-loader",
 
 				],
-				exclude: [path.resolve(__dirname, "node_modules/firebaseui/dist/")],
-			},
-			{
-				test: /\.css/,
-				use: ['style-loader', 'css-loader'],
-				include: [path.resolve(__dirname, "node_modules/firebaseui/dist/")]
-			},
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
 			},
 		],
 	},
