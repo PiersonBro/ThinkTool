@@ -6,6 +6,8 @@ import { createBrowserHistory } from "history";
 import Home from "../home/index";
 import firebase from "firebase";
 import styles from "./styles.css";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const customHistory = createBrowserHistory();
 
@@ -16,7 +18,9 @@ const App = () => {
 				<Switch>
 					{/* <Route path="/about" component={About} /> */}
 					<Route path='/'>
+						<DndProvider backend={HTML5Backend}>
 						<Home/>
+						</DndProvider>
 					</Route>
 				</Switch>
 			</Router>
