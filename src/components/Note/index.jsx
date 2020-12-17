@@ -89,12 +89,12 @@ class Note extends React.Component {
 		//FIXME: Do we really need this? Seems like it's the best practice but who knows.
 		this.SaveText = this.SaveText.bind(this);
 		this.SaveTitle = this.SaveTitle.bind(this);
+		if (this.props.relatedNotes !== undefined) {
 			this.state.relations = this.props.relatedNotes.map ((relatedNote) => { 
-				// console.log(relatedNote);
 				var color = relatedNote.replace(new RegExp(".*" + "COLOR:"), '');
-				console.log(color);
 				return <Ribbon color={color}/>
 			});
+		}	
 	}
 
 	state = {
@@ -187,18 +187,6 @@ class Note extends React.Component {
 								noteID={this.props.noteID}
 								data={this.state}
 							/>
-							{/* <input
-								type='text'
-								value={this.state.newRelatedNote}
-								placeholder='relationship'
-								onChange={(event) =>
-									this.updateNewRelatedNoteState(event.target.value)
-								}
-							/> */}
-							{/* <button onClick={this.addRelationship}>
-								Add Relationship
-							</button> */}
-							{/* <div>Related Notes: {this.state.relatedNotes}</div> */}
 							{this.state.relations}
 						</div>
 				)}
