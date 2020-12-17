@@ -139,10 +139,6 @@ class Note extends React.Component {
 		this.setState({ text });
 	};
 
-	updateNewRelatedNoteState = (text) => {
-		this.setState({ newRelatedNote: text });
-	};
-
 	addRelationship = (noteID, color) => {
 		const { relatedNotes } = this.state;
 
