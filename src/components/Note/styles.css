@@ -20,12 +20,13 @@
     box-shadow: -4px 4px rgba(119, 136, 153);
 }
 
-.noteblock > * {
+.noteblock>* {
     background-color: whitesmoke;
     color: rgb(44, 53, 56);
 }
 
-.noteblock > input, .noteblockInput {
+.noteblock>input,
+.noteblockInput {
     background-color: whitesmoke;
     padding: .5rem 1rem;
     font-size: 20px;
@@ -44,14 +45,14 @@
     outline: none;
 }
 
-.noteblock > hr {
+.noteblock>hr {
     width: 100%;
     margin: 0.25em 0;
     opacity: 0.5;
     align-self: center;
 }
 
-.noteblock > textarea {
+.noteblock>textarea {
     padding: .5rem 1rem;
     min-width: 8rem;
     min-height: 2rem;
@@ -61,12 +62,12 @@
     border-radius: 8px;
 }
 
-.noteblock > textarea:focus {
+.noteblock>textarea:focus {
     outline: none;
     border: var(--input-border-active);
 }
 
-.noteblock > button {
+.noteblock>button {
     min-width: 8rem;
     width: fit-content;
     padding: 0.5rem;
@@ -78,17 +79,17 @@
     border: none;
 }
 
-.noteblock > button:focus {
+.noteblock>button:focus {
     box-shadow: 2px 4px 6px #00000024;
     outline: 2px solid rgb(102, 238, 215);
 }
 
-.noteblock > button:hover {
+.noteblock>button:hover {
     background-color: rgb(24, 194, 206);
     cursor: pointer;
 }
 
-.noteblock > button:active {
+.noteblock>button:active {
     background-color: rgb(24, 194, 206);
     outline: 2px solid rgb(17, 228, 203);
     cursor: pointer;
@@ -96,4 +97,16 @@
 
 .savebutton {
     align-self: flex-end;
+}
+
+.ribbon {
+    width: 3rem;
+    align-self: flex-end;
+    height: 1vh;
+}
+
+.colorwrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }

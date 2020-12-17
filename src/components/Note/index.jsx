@@ -56,19 +56,13 @@ function DropBox({props, children,callback}) {
 
 	return children(drop)
 }
-const rectStyles = {
-    rectangle: {
-        width: '50px',
-        height: '50px',
-    }
-}
 
 function Ribbon({color}) {
 	// console.log(color);
 	var actualColor = "#" + color;
 	// console.log("actual color is:")
 	// console.log(actualColor);
-	return (<div style={rectStyles.rectangle} style={{color:actualColor}}><p>H</p></div>);
+	return (<div className={styles.ribbon} style={{backgroundColor:actualColor}}></div>);
 }
 
 class Note extends React.Component {
@@ -169,6 +163,9 @@ class Note extends React.Component {
 				<DropBox props={this.props} callback = {this.addRelationship.bind(this)}> 
 					{drop => (
 						<div ref={drop} className={styles.noteblock}>
+							<div className={styles.colorwrapper}>
+								{this.state.relations}
+							</div>
 							<Box name={this.state.title} callback = {this.SaveTitle.bind(this)} otherProps = {this.props} secondCallback = {this.addRelationship.bind(this)}/>
 							<textarea
 								style={{
@@ -187,7 +184,6 @@ class Note extends React.Component {
 								noteID={this.props.noteID}
 								data={this.state}
 							/>
-							{this.state.relations}
 						</div>
 				)}
 				</DropBox>
