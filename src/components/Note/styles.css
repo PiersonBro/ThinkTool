@@ -1,4 +1,9 @@
 /* Custom Note Styling */
+:root {
+    --input-border: 2px solid rgba(245, 245, 245, 0);
+    --input-border-active: 2px solid rgb(46, 178, 211);
+}
+
 .noteblock {
     background-color: whitesmoke;
     display: flex;
@@ -20,19 +25,23 @@
     color: rgb(44, 53, 56);
 }
 
-.noteblock > input {
+.noteblock > input, .noteblockInput {
+    background-color: whitesmoke;
     padding: .5rem 1rem;
     font-size: 20px;
     font-weight: 700;
-    border: none;
+    border: var(--input-border);
+    border-radius: 8px;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.noteblock > input:focus {
-    outline: 1px solid rgb(46, 178, 211);
+.noteblock>input:focus,
+.noteblockInput:focus {
+    border: var(--input-border-active);
+    outline: none;
 }
 
 .noteblock > hr {
@@ -48,11 +57,13 @@
     min-height: 2rem;
     font-size: 16px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
-    border: none;
+    border: var(--input-border);
+    border-radius: 8px;
 }
 
 .noteblock > textarea:focus {
-    outline: 1px solid rgb(46, 178, 211);
+    outline: none;
+    border: var(--input-border-active);
 }
 
 .noteblock > button {
