@@ -63,6 +63,14 @@ const rectStyles = {
     }
 }
 
+function Ribbon({color}) {
+	// console.log(color);
+	var actualColor = "#" + color;
+	// console.log("actual color is:")
+	// console.log(actualColor);
+	return (<div style={rectStyles.rectangle} style={{color:actualColor}}><p>H</p></div>);
+}
+
 class Note extends React.Component {
 	// propTypes = {
 	// 	databaseref: propTypes.object.isRequired,
@@ -81,17 +89,12 @@ class Note extends React.Component {
 		//FIXME: Do we really need this? Seems like it's the best practice but who knows.
 		this.SaveText = this.SaveText.bind(this);
 		this.SaveTitle = this.SaveTitle.bind(this);
-			var b = this;
-			this.state.relatedNotes.forEach (function (note)  {
-				// console.log("note is");
-				// console.log(note);
-				// console.log(b);
-				b.setState ({
-					relations: [...b.state.relations, <div style={rectStyles.rectangle} /*style={{color: color}}*/><p>H</p></div>]
-				});
+			this.state.relations = this.props.relatedNotes.map ((relatedNote) => { 
+				// console.log(relatedNote);
+				var color = relatedNote.replace(new RegExp(".*" + "COLOR:"), '');
+				console.log(color);
+				return <Ribbon color={color}/>
 			});
-			console.log("update!!");
-			console.log(this.state.relations.length);
 	}
 
 	state = {
@@ -149,13 +152,13 @@ class Note extends React.Component {
 	addRelationship = (noteID, color) => {
 		const { relatedNotes } = this.state;
 
-		relatedNotes.push(noteID)
+		relatedNotes.push(`${noteID}COLOR:${color}`)
 		console.log(this.state);
 		this.setState({ relatedNotes });
 		console.log(this.state);
 		console.log(this.state.relations);
 		this.setState ({
-			relations: [...this.state.relations, <div style={rectStyles.rectangle} /*style={{color: color}}*/><p>H</p></div>]
+			relations: [...this.state.relations, <Ribbon color={color}/>]
 		})
 		console.log(this.state.relations);
 	};
@@ -195,8 +198,8 @@ class Note extends React.Component {
 							{/* <button onClick={this.addRelationship}>
 								Add Relationship
 							</button> */}
-							<div>Related Notes: {this.state.relatedNotes}</div>
-							{/* {this.state.relations} */}
+							{/* <div>Related Notes: {this.state.relatedNotes}</div> */}
+							{this.state.relations}
 						</div>
 				)}
 				</DropBox>
