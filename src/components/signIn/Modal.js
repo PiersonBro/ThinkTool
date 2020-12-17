@@ -6,7 +6,6 @@ import styles from "./popup_style.css";
 
 const uiConfig = {
     // Popup signin flow rather than redirect flow.
-    // FIXME: as of now this isn't working?
 	signInFlow: 'popup',
 	// Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
 	signInSuccessUrl: '/signedIn',
@@ -17,6 +16,7 @@ const uiConfig = {
 };
 // Based off of this tutorial!
 // https://upmostly.com/tutorials/modal-components-react-custom-hooks
+// A simple modal 'popup' ui that allows us to show our login providers, in this case only sign in with google. 
 const Modal = ({ isShowing, hide }) => isShowing ? ReactDom.createPortal(
     <React.Fragment>
         <div className={styles.modalOverlay}/>

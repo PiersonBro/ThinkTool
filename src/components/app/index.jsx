@@ -10,16 +10,17 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const customHistory = createBrowserHistory();
-
+//Setup our react app
 const App = () => {
 	return (
 		<React.Fragment>
 			<Router history={customHistory}>
 				<Switch>
-					{/* <Route path="/about" component={About} /> */}
 					<Route path='/'>
+						{/*Wrap the part of app that needs drag n drop support, in this case the entire app. */}
 						<DndProvider backend={HTML5Backend}>
-						<Home/>
+							{/* The home page of our app. */}
+							<Home/>
 						</DndProvider>
 					</Route>
 				</Switch>

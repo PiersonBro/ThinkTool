@@ -23,7 +23,3 @@ var firebaseConfig = {
 export const initializeFirebase = () => {
 	firebase.initializeApp(firebaseConfig);
 };
-
-export const saveNote = (title, text) => {
-	// firebase.save({ title, text });
-};

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase"
 import Modal from "./Modal";
 import useModal from "./useModal";
-//FIXME: Use proper buttoning styling CSS.
 import buttonStyles from "../Note/styles.css";
 
 function SignInScreen({ callback }) {
@@ -14,7 +13,8 @@ function SignInScreen({ callback }) {
         });
         return () => unregisterAuthObserver();
     }, []);
-
+    
+    // if not signed in, ask them to sign in
     if (!isSignedIn) {
         return (
             <div>
@@ -25,6 +25,7 @@ function SignInScreen({ callback }) {
     callback();
     return (
         <div>
+            {/* display the user's name once they have logged in with Google */}
             <p>Welcome {firebase.auth().currentUser.displayName}!</p>
         </div>
     )
@@ -34,6 +35,7 @@ const SignInFlow = ({ callback }) => {
     return (
         <div className={buttonStyles.noteblock}>
             <SignInScreen callback={callback} />
+            {/* Sign in button that brings up the modal to use sing in with Google */}
             <button className="button-default" onClick={toggle}>Sign in</button>
             <Modal
                 isShowing={isShowing}

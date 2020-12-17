@@ -28,6 +28,7 @@ class SignIn extends React.Component {
 	}
 
 	componentDidMount() {
+		//load the css for the log in ui from the firebase ui package.
 		require("firebaseui/dist/firebaseui.css");
 
 		const firebaseui = require("firebaseui");
@@ -42,6 +43,7 @@ class SignIn extends React.Component {
 			}
 
 			this.userSignedIn = false;
+			//If the user logged in, update our state.
 			this.unregisterAuthObserver = this.firebaseAuth.onAuthStateChanged(
 				(user) => {
 					if (!user && this.userSignedIn) {
@@ -54,12 +56,12 @@ class SignIn extends React.Component {
 			if (this.uiCallback) {
 				this.uiCallback(this.firebaseuiWidget);
 			}
-			console.log(this.firebaseuiWidget);
 			this.firebaseuiWidget.start("#" + ELEMENT_ID, this.uiConfig);
 		});
 	}
 
 	componentWillUnmount() {
+		//clean up the widget.
 		firebaseUIDeletion = firebaseUIDeletion.then(() => {
 			this.unregisterAuthObserver();
 			return this.firebaseuiWidget.delete();
@@ -69,7 +71,7 @@ class SignIn extends React.Component {
 	}
 
 	render() {
-		console.log(this.className);
+		//Render the sign in buttons.
 		return <div className={this.className} id={ELEMENT_ID} />;
 	}
 }
